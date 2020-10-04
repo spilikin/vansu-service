@@ -1,0 +1,11 @@
+
+.Run the API server
+----
+poetry update
+poetry run uvicorn vansu.service:app --reload
+----
+
+.Request the resource on locally running Docker
+----
+https localhost/api/v1/info host:vansu.spilikin.dev --verify=no
+----

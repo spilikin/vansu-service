@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "vansu-service"
+version = "0.1.0"
+description = ""
+authors = ["Spilikin"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = "<=1.0.0"
+uvicorn = "<=1.0.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "<6.1.0"
+
+[build-system]
+requires = ["poetry>=1.1.0"]
+build-backend = "poetry.masonry.api"
