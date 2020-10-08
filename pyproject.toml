@@ -8,6 +8,7 @@ authors = ["Spilikin"]
 python = "^3.8"
 fastapi = "<=1.0.0"
 uvicorn = "<=1.0.0"
+"fhir.resources" = "^6.0.0b5"
 
 [tool.poetry.dev-dependencies]
 pytest = "<6.1.0"
@@ -15,3 +16,6 @@ pytest = "<6.1.0"
 [build-system]
 requires = ["poetry>=1.1.0"]
 build-backend = "poetry.masonry.api"
+
+[tool.poetry.scripts]
+vaupie = "vaupie.cli:main"

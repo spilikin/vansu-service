@@ -37,6 +37,33 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
+name = "dnspython"
+version = "2.0.0"
+description = "DNS toolkit"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.extras]
+dnssec = ["cryptography (>=2.6)"]
+doh = ["requests", "requests-toolbelt"]
+idna = ["idna (>=2.1)"]
+curio = ["curio (>=1.2)", "sniffio (>=1.1)"]
+trio = ["trio (>=0.14.0)", "sniffio (>=1.1)"]
+
+[[package]]
+name = "email-validator"
+version = "1.1.1"
+description = "A robust email syntax and deliverability validation library for Python 2.x/3.x."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+dnspython = ">=1.15.0"
+idna = ">=2.0.0"
+
+[[package]]
 name = "fastapi"
 version = "0.61.1"
 description = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
@@ -55,12 +82,36 @@ doc = ["mkdocs (>=1.1.2,<2.0.0)", "mkdocs-material (>=5.5.0,<6.0.0)", "markdown-
 test = ["pytest (5.4.3)", "pytest-cov (2.10.0)", "pytest-asyncio (>=0.14.0,<0.15.0)", "mypy (0.782)", "flake8 (>=3.8.3,<4.0.0)", "black (19.10b0)", "isort (>=5.0.6,<6.0.0)", "requests (>=2.24.0,<3.0.0)", "httpx (>=0.14.0,<0.15.0)", "email_validator (>=1.1.1,<2.0.0)", "sqlalchemy (>=1.3.18,<2.0.0)", "peewee (>=3.13.3,<4.0.0)", "databases[sqlite] (>=0.3.2,<0.4.0)", "orjson (>=3.2.1,<4.0.0)", "async_exit_stack (>=1.0.1,<2.0.0)", "async_generator (>=1.10,<2.0.0)", "python-multipart (>=0.0.5,<0.0.6)", "aiofiles (>=0.5.0,<0.6.0)", "flask (>=1.1.2,<2.0.0)"]
 
 [[package]]
+name = "fhir.resources"
+version = "6.0.0b5"
+description = "FHIR Resources as Model Class"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+orjson = "*"
+pydantic = {version = "*", extras = ["email"]}
+
+[package.extras]
+all = ["coverage", "pytest-runner", "Jinja2 (2.11.1)", "MarkupSafe (1.1.1)", "requests (2.23.0)", "colorlog (2.10.0)", "certifi", "flake8 (3.8.3)", "flake8-isort (3.0.0)", "flake8-bugbear (20.1.4)", "isort (4.3.21)", "black", "mypy", "zest-releaser", "pytest (>5.4.0)", "pytest-cov (>=2.10.0)"]
+test = ["coverage", "pytest-runner", "pytest (>5.4.0)", "pytest-cov (>=2.10.0)"]
+
+[[package]]
 name = "h11"
 version = "0.10.0"
 description = "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1"
 category = "main"
 optional = false
 python-versions = "*"
+
+[[package]]
+name = "idna"
+version = "2.10"
+description = "Internationalized Domain Names in Applications (IDNA)"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [[package]]
 name = "iniconfig"
@@ -77,6 +128,14 @@ description = "More routines for operating on iterables, beyond itertools"
 category = "dev"
 optional = false
 python-versions = ">=3.5"
+
+[[package]]
+name = "orjson"
+version = "3.4.0"
+description = "Fast, correct Python JSON library supporting dataclasses, datetimes, and numpy"
+category = "main"
+optional = false
+python-versions = ">=3.6"
 
 [[package]]
 name = "packaging"
@@ -116,6 +175,9 @@ description = "Data validation and settings management using python 3.6 type hin
 category = "main"
 optional = false
 python-versions = ">=3.6"
+
+[package.dependencies]
+email-validator = {version = ">=1.0.3", optional = true, markers = "extra == \"email\""}
 
 [package.extras]
 dotenv = ["python-dotenv (>=0.10.4)"]
@@ -198,7 +260,7 @@ standard = ["websockets (>=8.0.0,<9.0.0)", "watchgod (>=0.6,<0.7)", "python-dote
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "5eabe54af044ad99c0ae0949ce09d034153521959b4a8190185cbb4300f0c660"
+content-hash = "e06a279710b2441c382e25ffcbcef0df04605b0d895ff8631fd1b62b4d1bbddc"
 
 [metadata.files]
 atomicwrites = [
@@ -217,13 +279,29 @@ colorama = [
     {file = "colorama-0.4.3-py2.py3-none-any.whl", hash = "sha256:7d73d2a99753107a36ac6b455ee49046802e59d9d076ef8e47b61499fa29afff"},
     {file = "colorama-0.4.3.tar.gz", hash = "sha256:e96da0d330793e2cb9485e9ddfd918d456036c7149416295932478192f4436a1"},
 ]
+dnspython = [
+    {file = "dnspython-2.0.0-py3-none-any.whl", hash = "sha256:40bb3c24b9d4ec12500f0124288a65df232a3aa749bb0c39734b782873a2544d"},
+    {file = "dnspython-2.0.0.zip", hash = "sha256:044af09374469c3a39eeea1a146e8cac27daec951f1f1f157b1962fc7cb9d1b7"},
+]
+email-validator = [
+    {file = "email_validator-1.1.1-py2.py3-none-any.whl", hash = "sha256:5f246ae8d81ce3000eade06595b7bb55a4cf350d559e890182a1466a21f25067"},
+    {file = "email_validator-1.1.1.tar.gz", hash = "sha256:63094045c3e802c3d3d575b18b004a531c36243ca8d1cec785ff6bfcb04185bb"},
+]
 fastapi = [
     {file = "fastapi-0.61.1-py3-none-any.whl", hash = "sha256:6cc31bb555dd8ca956d1d227477d661e4ac012337242a41d36214ffbda78bfe9"},
     {file = "fastapi-0.61.1.tar.gz", hash = "sha256:61ed73b4304413a2ea618d1b95ea866ee386e0e62dd8659c4f5059286f4a39c2"},
 ]
+"fhir.resources" = [
+    {file = "fhir.resources-6.0.0b5-py2.py3-none-any.whl", hash = "sha256:dfe18058022b75d13edc7fadce946025303cbdb4d6de2fa890764e884b74ed07"},
+    {file = "fhir.resources-6.0.0b5.tar.gz", hash = "sha256:fc5f67bc3802b34fa791bc19572b6783e4644244cbcfed6fa2a3028b83263942"},
+]
 h11 = [
     {file = "h11-0.10.0-py2.py3-none-any.whl", hash = "sha256:9eecfbafc980976dbff26a01dd3487644dd5d00f8038584451fc64a660f7c502"},
     {file = "h11-0.10.0.tar.gz", hash = "sha256:311dc5478c2568cc07262e0381cdfc5b9c6ba19775905736c87e81ae6662b9fd"},
+]
+idna = [
+    {file = "idna-2.10-py2.py3-none-any.whl", hash = "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"},
+    {file = "idna-2.10.tar.gz", hash = "sha256:b307872f855b18632ce0c21c5e45be78c0ea7ae4c15c828c20788b26921eb3f6"},
 ]
 iniconfig = [
     {file = "iniconfig-1.0.1-py3-none-any.whl", hash = "sha256:80cf40c597eb564e86346103f609d74efce0f6b4d4f30ec8ce9e2c26411ba437"},
@@ -232,6 +310,23 @@ iniconfig = [
 more-itertools = [
     {file = "more-itertools-8.5.0.tar.gz", hash = "sha256:6f83822ae94818eae2612063a5101a7311e68ae8002005b5e05f03fd74a86a20"},
     {file = "more_itertools-8.5.0-py3-none-any.whl", hash = "sha256:9b30f12df9393f0d28af9210ff8efe48d10c94f73e5daf886f10c4b0b0b4f03c"},
+]
+orjson = [
+    {file = "orjson-3.4.0-cp36-cp36m-macosx_10_7_x86_64.whl", hash = "sha256:5b7db73d295d75a25c4f3a120e141d182cbcbb240d07c1b006655269bb802508"},
+    {file = "orjson-3.4.0-cp36-cp36m-manylinux2014_aarch64.whl", hash = "sha256:4fc25cd9f81de2b6e55fa7e5563973a1d47c05c86fbaf9124b1b74a08df65929"},
+    {file = "orjson-3.4.0-cp36-cp36m-manylinux2014_x86_64.whl", hash = "sha256:e7c2920f66ee994cef285e93b81bee08935803b4f322bee77d0353a33746f778"},
+    {file = "orjson-3.4.0-cp36-none-win_amd64.whl", hash = "sha256:24dd09562ec383ddd77e9f82b9d604ea3a300643b2fd5beaf9a0b21d77e52be2"},
+    {file = "orjson-3.4.0-cp37-cp37m-macosx_10_7_x86_64.whl", hash = "sha256:86c005a10b626e1be5392a439774cf79f920a6e90f49dcd708aa6adc0c2f3fb3"},
+    {file = "orjson-3.4.0-cp37-cp37m-manylinux2014_aarch64.whl", hash = "sha256:b326c47e19c939ee770c377d72d7595eefc21bf3b08864fcb82f46d433a0069f"},
+    {file = "orjson-3.4.0-cp37-cp37m-manylinux2014_x86_64.whl", hash = "sha256:fd1bf6ab3b12020531a153e77d8468d7febf0efa6e36a64a06e08e5c02d2d707"},
+    {file = "orjson-3.4.0-cp37-none-win_amd64.whl", hash = "sha256:132766446e6ff0ad9d13cd550cfc15d078ca3d2c6d5277517897da91d12e39df"},
+    {file = "orjson-3.4.0-cp38-cp38-macosx_10_7_x86_64.whl", hash = "sha256:48238a0a2696c4f082d5432802064b4a63849cce3fc81ea80d9517f5cfeda138"},
+    {file = "orjson-3.4.0-cp38-cp38-manylinux2014_aarch64.whl", hash = "sha256:ec84a7c0703fab8b4feecac19a5fb92156ae402fc8952a961ecbf1cdac1ef5c0"},
+    {file = "orjson-3.4.0-cp38-cp38-manylinux2014_x86_64.whl", hash = "sha256:5ed087b0de8c8fad29d0b776d5c3287644271159e85efe2fbd745ebc0cb81697"},
+    {file = "orjson-3.4.0-cp38-none-win_amd64.whl", hash = "sha256:af526fa8f4e4ac6ba953bf50bb384928a7d4a2849180c21593cdd3e08060f8ca"},
+    {file = "orjson-3.4.0-cp39-cp39-manylinux2014_aarch64.whl", hash = "sha256:4a757ee2154b09631d272e63bd35c549f876ce5425dd154446dff0e1ef603429"},
+    {file = "orjson-3.4.0-cp39-cp39-manylinux2014_x86_64.whl", hash = "sha256:1e957d1ab0ea3e4a4706cfa8f00a3a672dda7959607c231b6acb0b15ce35d52e"},
+    {file = "orjson-3.4.0.tar.gz", hash = "sha256:2dcfc744cad7dceee7fca55ebdca91cc79e14223acc76423f0f4017e7a2676c9"},
 ]
 packaging = [
     {file = "packaging-20.4-py2.py3-none-any.whl", hash = "sha256:998416ba6962ae7fbd6596850b80e17859a5753ba17c32284f67bfff33784181"},
